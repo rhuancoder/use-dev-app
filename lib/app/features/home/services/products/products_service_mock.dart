@@ -88,12 +88,13 @@ class ProductsServiceMock implements ProductsService {
       // Simula 95% de sucesso
       if (_shouldSimulateSuccess()) {
         return (
-          result: Success(),
+          result: const Success(),
           products: List<ProductModel>.from(_products)
         );
       } else {
         return (
-          result: GeneralFailure(message: 'Erro simulado ao buscar produtos'),
+          result:
+              const GeneralFailure(message: 'Erro simulado ao buscar produtos'),
           products: <ProductModel>[]
         );
       }
@@ -127,10 +128,11 @@ class ProductsServiceMock implements ProductsService {
 
         _products.add(newProduct);
 
-        return (result: Success(), product: newProduct);
+        return (result: const Success(), product: newProduct);
       } else {
         return (
-          result: GeneralFailure(message: 'Erro simulado ao criar produto'),
+          result:
+              const GeneralFailure(message: 'Erro simulado ao criar produto'),
           product: null
         );
       }
@@ -169,7 +171,7 @@ class ProductsServiceMock implements ProductsService {
 
           _products[index] = updatedProduct;
 
-          return (result: Success(), product: updatedProduct);
+          return (result: const Success(), product: updatedProduct);
         } else {
           return (
             result:
@@ -179,7 +181,8 @@ class ProductsServiceMock implements ProductsService {
         }
       } else {
         return (
-          result: GeneralFailure(message: 'Erro simulado ao atualizar produto'),
+          result: const GeneralFailure(
+              message: 'Erro simulado ao atualizar produto'),
           product: null
         );
       }
@@ -202,7 +205,7 @@ class ProductsServiceMock implements ProductsService {
 
         if (index != -1) {
           _products.removeAt(index);
-          return (result: Success(), success: true);
+          return (result: const Success(), success: true);
         } else {
           return (
             result:
@@ -212,7 +215,8 @@ class ProductsServiceMock implements ProductsService {
         }
       } else {
         return (
-          result: GeneralFailure(message: 'Erro simulado ao deletar produto'),
+          result:
+              const GeneralFailure(message: 'Erro simulado ao deletar produto'),
           success: false
         );
       }
@@ -237,7 +241,7 @@ class ProductsServiceMock implements ProductsService {
         );
 
         if (product.id != null) {
-          return (result: Success(), product: product);
+          return (result: const Success(), product: product);
         } else {
           return (
             result:
@@ -247,7 +251,8 @@ class ProductsServiceMock implements ProductsService {
         }
       } else {
         return (
-          result: GeneralFailure(message: 'Erro simulado ao buscar produto'),
+          result:
+              const GeneralFailure(message: 'Erro simulado ao buscar produto'),
           product: null
         );
       }

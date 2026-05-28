@@ -25,12 +25,13 @@ class HomeCubit extends Cubit<HomeState> {
       if (!isClosed) emit(HomeLoaded(products: responseProducts.products));
     } else {
       final error = responseProducts.result;
-      if (!isClosed)
+      if (!isClosed) {
         emit(HomeError(
           message: error is ConnectionFailure
               ? 'Verifique sua conexão'
               : error.message ?? 'Ocorreu um erro inesperado',
         ));
+      }
     }
   }
 
@@ -49,8 +50,9 @@ class HomeCubit extends Cubit<HomeState> {
               uploadResponse.imageUrl != null) {
             imageUrls.add(uploadResponse.imageUrl!);
           } else {
-            if (!isClosed)
-              emit(HomeError(message: 'Erro ao fazer upload da imagem'));
+            if (!isClosed) {
+              emit(const HomeError(message: 'Erro ao fazer upload da imagem'));
+            }
             return;
           }
         }
@@ -68,12 +70,13 @@ class HomeCubit extends Cubit<HomeState> {
         if (!isClosed) getHomeData(); // Recarregar a lista
       } else {
         final error = response.result;
-        if (!isClosed)
+        if (!isClosed) {
           emit(HomeError(
             message: error is ConnectionFailure
                 ? 'Verifique sua conexão'
                 : 'Erro ao criar produto',
           ));
+        }
       }
     } catch (e) {
       if (!isClosed) emit(HomeError(message: 'Erro inesperado: $e'));
@@ -95,8 +98,9 @@ class HomeCubit extends Cubit<HomeState> {
               uploadResponse.imageUrl != null) {
             imageUrls.add(uploadResponse.imageUrl!);
           } else {
-            if (!isClosed)
-              emit(HomeError(message: 'Erro ao fazer upload da imagem'));
+            if (!isClosed) {
+              emit(const HomeError(message: 'Erro ao fazer upload da imagem'));
+            }
             return;
           }
         }
@@ -119,12 +123,13 @@ class HomeCubit extends Cubit<HomeState> {
         if (!isClosed) getHomeData(); // Recarregar a lista
       } else {
         final error = response.result;
-        if (!isClosed)
+        if (!isClosed) {
           emit(HomeError(
             message: error is ConnectionFailure
                 ? 'Verifique sua conexão'
                 : 'Erro ao atualizar produto',
           ));
+        }
       }
     } catch (e) {
       if (!isClosed) emit(HomeError(message: 'Erro inesperado: $e'));
@@ -141,12 +146,13 @@ class HomeCubit extends Cubit<HomeState> {
       if (!isClosed) getHomeData(); // Recarregar a lista
     } else {
       final error = response.result;
-      if (!isClosed)
+      if (!isClosed) {
         emit(HomeError(
           message: error is ConnectionFailure
               ? 'Verifique sua conexão'
               : 'Erro ao deletar produto',
         ));
+      }
     }
   }
 
@@ -159,12 +165,13 @@ class HomeCubit extends Cubit<HomeState> {
       if (!isClosed) emit(HomeProductLoaded(product: response.product!));
     } else {
       final error = response.result;
-      if (!isClosed)
+      if (!isClosed) {
         emit(HomeError(
           message: error is ConnectionFailure
               ? 'Verifique sua conexão'
               : 'Erro ao carregar produto',
         ));
+      }
     }
   }
 }
